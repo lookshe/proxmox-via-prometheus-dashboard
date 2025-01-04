@@ -536,6 +536,8 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMax": 1,
+            "axisSoftMin": 0,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -563,8 +565,9 @@
           },
           "mappings": [],
           "min": 0,
+          "max": 1,
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
                 "color": "green",
@@ -572,14 +575,15 @@
               },
               {
                 "color": "orange",
-                "value": 70
+                "value": 0.7
               },
               {
                 "color": "red",
-                "value": 90
+                "value": 0.9
               }
             ]
-          }
+          },
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -723,7 +727,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "pve_cpu_usage_ratio{instance=\"$instance\"} / pve_cpu_usage_limit and on(id) pve_node_info",
+          "expr": "pve_cpu_usage_ratio{instance=\"$instance\"} and on(id) pve_node_info",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
